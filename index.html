@@ -34,9 +34,7 @@
             <p class="text-gray-500">メンバーや気分に合わせて、最高のスタートを切れる1曲を提案！</p>
         </header>
 
-        <!-- Configuration Form -->
         <div class="space-y-8">
-            <!-- 1. Gender Selection -->
             <div>
                 <label class="block text-sm font-bold text-gray-700 mb-3">1. 歌う人の声域・性別</label>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -47,7 +45,6 @@
                 </div>
             </div>
 
-            <!-- 2. Generation Selection (Multiple) -->
             <div>
                 <label class="block text-sm font-bold text-gray-700 mb-1">2. ターゲット世代 <span class="text-xs font-normal text-indigo-500">(複数選択可)</span></label>
                 <div class="grid grid-cols-3 sm:grid-cols-5 gap-2 mt-3">
@@ -59,7 +56,6 @@
                 </div>
             </div>
 
-            <!-- 3. Vibe / Difficulty Selection -->
             <div>
                 <label class="block text-sm font-bold text-gray-700 mb-3">3. 難易度・雰囲気</label>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -69,25 +65,29 @@
                 </div>
             </div>
 
-            <!-- Suggest Button -->
             <button id="suggestBtn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-xl shadow-lg transition-transform transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed">
                 曲を提案してもらう！
             </button>
         </div>
 
-        <!-- Result Section -->
         <div id="resultArea" class="mt-12 hidden card-enter">
             <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center">
                 <span class="bg-indigo-100 text-indigo-600 p-2 rounded-lg mr-2">🎯</span> 
                 おすすめの楽曲
             </h2>
             <div id="songList" class="space-y-4">
-                <!-- Songs will be injected here -->
-            </div>
+                </div>
             <p id="noResults" class="hidden text-center text-gray-500 py-10 bg-gray-50 rounded-xl">
                 条件に合う曲が見つかりませんでした。<br>条件を変えてみてください！
             </p>
         </div>
+
+        <div class="mt-10 text-center">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfAnkMY3ayOjAB9GaFmOPLvgSoARxO7NDOj8XMovUR6rvmblA/viewform?usp=header" target="_blank" class="text-sm text-indigo-500 hover:text-indigo-700 underline transition-colors">
+                📝 お問い合わせ・アンケートはこちら
+            </a>
+        </div>
+
     </div>
 
     <script>
@@ -205,16 +205,12 @@
             // Filter Logic
             const filtered = songDatabase.filter(song => {
                 // Gender Match Logic
-                // If user selects 'mixed', we prioritize songs marked 'mixed'.
-                // If user selects 'any', anything goes.
                 let genderMatch = false;
                 if (state.gender === 'any') {
                     genderMatch = true;
                 } else if (state.gender === 'mixed') {
-                    // When 'mixed' is chosen, only show mixed songs or groups often sung by mixed groups
                     genderMatch = song.gender === 'mixed';
                 } else {
-                    // If 'male' or 'female' is chosen, show that specific gender OR mixed songs (since they are versatile)
                     genderMatch = song.gender === state.gender || song.gender === 'mixed';
                 }
 
@@ -262,12 +258,6 @@
             // Scroll to result
             resultArea.scrollIntoView({ behavior: 'smooth' });
         }
-<p>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfAnkMY3ayOjAB9GaFmOPLvgSoARxO7NDOj8XMovUR6rvmblA/viewform?usp=header" target="_blank">
-    お問い合わせ・アンケートはこちら
-  </a>
-</p>
     </script>
 </body>
-
 </html>
